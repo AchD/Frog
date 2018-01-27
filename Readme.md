@@ -1,50 +1,50 @@
 # Frog
 
-Frog wurde in erster Linie dazu geschrieben, um meine Arduino's unkompliziert mittels MQTT an die Hausautomation anzubinden. Die digitalen oder analogen Werte, die mittels MQTT übertragen werden, kann man einfach mit den Variablen des Arduinos verknüpfen. Diese werden dann automatisch im Hintergrund von der Hausautomation beschrieben bzw. bei Wertänderung an die Hausautomation gesendet. Die Variablen können im Arduino Programm wie gewohnt benutzt werden. 
- 
-Da es auch schon mal vorkommen kann, dass eine Verbindung unterbrochen wird, überwacht Frog dies und meldet sich erneut am MQTT Broker an, sobald die Verbindung wieder aufgebaut ist. (Subscribes werden automatisch aufgefrischt.)
+At first, Frog was written to easy bind my Arduino's per MQTT to my Smarthome software. The digital or analog values transmitted via MQTT can be easily linked to the variables of the Arduino. These are automatically described in the background by the home automation system or will be sent when the value changes. The variables can be used as usual in the Arduino program.
 
-Die Anzahl möglicher Variablenanbindungen und länge der Topics variiert, je nach verwendetem Prozessor.
+If sometimes a connection is interrupted, Frog monitors this and binds to the MQTT broker again as the connection is reestablished. (Subscribes are automatically refreshed.)
+
+The number of connections and length of topics varies, depending on the used processor.
 
 
-## Benutzung von Frog ##
+## Use of Frog ##
 
-Frog benötigt eine Client Verbindung via Ethernet oder WiFi.
+Frog uses a Client connection via Ethernet or WiFi.
 
-## Einrichten der MQTT- Verbindung: ##
+## Setup the MQTT- connection: ##
 
     Frog (client, Broker, Port, clientID, user*, password*)
 
-Mit dem Aufruf des Konstruktor "Frog" werden die Verbindungsparameter übergeben. Diese Parameter sind imn MQTT Broker (MQTT Server) festgelegt.
+Calling the constructor "Frog" transfers the connection parameters. These parameters are set in the MQTT Broker (MQTT Server).
 
 
-- client = Client der Ethernet- oder WiFi- Verbindung des Arduino.
-- Broker = IP- Adresse (IPAddress) oder URL (const char) des MQTT Brokers.
-- Port = Port des MQTT- Brokers, im Normalfall 1883.
-- clientID = Eindeutiger Name des MQTT- Clients (const char).
-- user = *Optional - Benutzername (const char) für die Authentifizierung am Broker.
-- passwort = *Optional - Passwort (const char) zur Authentifizierung.
+- client = Client of Ethernet- or WiFi- connection of the Arduino.
+- Broker = IP- address (IPAddress) or URL (const char) of the MQTT Broker.
+- Port = Port of the MQTT- Broker, normally 1883.
+- clientID = Unique name of the MQTT- client (const char).
+- user = *optional - Username (const char) for authentification at Broker.
+- passwort = *optional - Password (const char) for authentification.
 
-Falls der Broker keine Authentifizierung erwartet kannst du user und password weggelassen.  
-## Einrichten der Variablenanbindung: ##
+If Broker don't needs an authentification, you can omit user and password.  
+## Setup variables connection: ##
 
-Frog kann sowohl Variablen vom Typ *boolean* als auch *float* verwenden. Diese Variablen werden wie üblich im Arduino deklariert und verwendet. Eine Variable kann entweder vom Client an den Broker gesendet werden (Publish) oder vom Broker empfangen werden (Subscribe).
+Frog can use both *boolean* and *float* variables. These variables are declared and used in the Arduino as usual. A variable can either be sent by the client to the broker (Publish) or received by the broker (Subscribe).
 
 
     setPublish (topic, &value, QoS*, boolType*)
     setSubscribe (topic, &value, QoS*, boolType*)
 
-Dem entsprechend benutzt du *setPublish* für Variablen die du an den Broker senden möchtest und *setSubscribe* für Variablen die Ihren Wert von Broker erhalten.
+Accordingly, you use *setPublish* for variables you want to send to the broker and *setSubscribe* for variables you want to receive from the broker.
 
-- topic = MQTT- Variablenbezeichnung (const char) z.B. "home/floor/switch/lamp".
-- &value = Adresse der verknüpften Arduino Variable. (Vorangehendes '&' nicht vergessen!)
-- QoS = *Optional - "Quality of Service"  0,1 oder 2 (Wird bei QoS=0 weggelassen)
-- BoolType = *Optional - Bei boolschen Variablen wird vom MQTT- Broker eine "1" oder "0" erwartet. Einige Hausautomationen verwenden auch "ON" und "OFF", dann schreibt man hier "ON/OFF" (const char).
+- topic = MQTT- variable name (const char) for example "home/floor/switch/lamp".
+- &value = Address of the linked Arduino variable. (Don't forget previous '&'!)
+- QoS = *Optional - "Quality of Service"  0,1 or 2 (Is omitted at QoS=0)
+- BoolType = oOptional - For Boolean variables, the MQTT broker expects a "1" or "0". Some home automation systems also use "ON" and "OFF", then write "ON / OFF" (const char) here.
 
-## Hintergrundbearbeitung ##
-Nachdem die Einrichtung vorgenommen wurde muss in jedem Durchlauf der Programmschleife "void loop()" der Frog - loop durchlaufen werden.
+## Background processing ##
+
+After setup, the Frog - loop must be run in each program loop "void loop ()".
 
     loop()
 
-Der Klassenname wurde hier jetzt nicht aufgeführt. Wie üblich wird dieser beim Konstruktoraufruf festgelegt und vor jeden Aufrauf der Klassenfunktion angegeben. Das alles kann man in den Beispielprogrammen sehen.
-
+The class name has not been listed here. As usual, it is set at the constructor call and specified before each class function call. All this can be seen in the example programs.
