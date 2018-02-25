@@ -1,5 +1,5 @@
 #include <ESP8266WiFi.h>
-#include <Frog.h>
+#include <frog.h>
 
 /* Programmbeispiel
  *  
