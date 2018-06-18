@@ -1,10 +1,10 @@
 # Frog
 
-Frog wurde in erster Linie dazu geschrieben, um meine Arduino's unkompliziert mittels MQTT an die Hausautomation anzubinden. Die digitalen oder analogen Werte, die mittels MQTT übertragen werden, kann man einfach mit den Variablen des Arduinos verknüpfen. Diese werden dann automatisch im Hintergrund von der Hausautomation beschrieben bzw. bei Wertänderung an die Hausautomation gesendet. Die Variablen können im Arduino Programm wie gewohnt benutzt werden. 
+Frog wurde in erster Linie dazu geschrieben um meine Arduino's unkompliziert mit MQTT an die Hausautomation anzubinden. Die digitalen oder analogen Werte, die per MQTT übertragen werden, kann man einfach mit den Variablen des Arduinos verknüpfen. Diese werden dann automatisch im Hintergrund von der Hausautomation beschrieben bzw. bei Wertänderung an die Hausautomation gesendet. Die Variablen können im Arduino Programm wie gewohnt benutzt werden. 
  
-Da es auch schon mal vorkommen kann, dass eine Verbindung unterbrochen wird, überwacht Frog dies und meldet sich erneut am MQTT Broker an, sobald die Verbindung wieder aufgebaut ist. (Subscribes werden automatisch aufgefrischt.)
+Da es auch schon mal vorkommen kann, dass eine Verbindung unterbrochen wird, überwacht Frog dies und meldet sich erneut am MQTT Broker an sobald die Verbindung wieder aufgebaut ist. (Subscribes werden automatisch aufgefrischt.)
 
-Die Anzahl möglicher Variablenanbindungen und länge der Topics variiert, je nach verwendetem Prozessor.
+Die Anzahl möglicher Variablenanbindungen und länge der Topics variiert je nach verwendetem Prozessor.
 
 
 ## Benutzung von Frog ##
@@ -15,7 +15,7 @@ Frog benötigt eine Client Verbindung via Ethernet oder WiFi.
 
     Frog (client, Broker, Port, clientID, user*, password*)
 
-Mit dem Aufruf des Konstruktor "Frog" werden die Verbindungsparameter übergeben. Diese Parameter sind imn MQTT Broker (MQTT Server) festgelegt.
+Mit dem Aufruf des Konstruktor "Frog" werden die Verbindungsparameter übergeben. Diese Parameter sind im MQTT Broker (MQTT Server) festgelegt.
 
 
 - client = Client der Ethernet- oder WiFi- Verbindung des Arduino.
@@ -34,7 +34,7 @@ Frog kann sowohl Variablen vom Typ *boolean* als auch *float* verwenden. Diese V
     setPublish (topic, &value, QoS*, boolType*)
     setSubscribe (topic, &value, QoS*, boolType*)
 
-Dem entsprechend benutzt du *setPublish* für Variablen die du an den Broker senden möchtest und *setSubscribe* für Variablen die Ihren Wert von Broker erhalten.
+Dem entsprechend benutzt du *setPublish* für Variablen die du an den Broker senden möchtest und *setSubscribe* für Variablen die Ihren Wert vom Broker erhalten.
 
 - topic = MQTT- Variablenbezeichnung (const char) z.B. "home/floor/switch/lamp".
 - &value = Adresse der verknüpften Arduino Variable. (Vorangehendes '&' nicht vergessen!)
@@ -46,5 +46,7 @@ Nachdem die Einrichtung vorgenommen wurde muss in jedem Durchlauf der Programmsc
 
     loop()
 
-Der Klassenname wurde hier jetzt nicht aufgeführt. Wie üblich wird dieser beim Konstruktoraufruf festgelegt und vor jeden Aufrauf der Klassenfunktion angegeben. Das alles kann man in den Beispielprogrammen sehen.
+Der Klassenname wurde hier jetzt nicht aufgeführt. Wie üblich wird dieser beim Konstruktoraufruf festgelegt und vor jeden Aufrauf der Klassenfunktion angegeben. 
+
+Das alles kann man in den Beispielprogrammen sehen.
 
