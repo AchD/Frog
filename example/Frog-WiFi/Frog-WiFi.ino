@@ -4,9 +4,9 @@
 /* Programmbeispiel
  *  
  *  Arduino auf ESP8266 WiFi Board
- *  als MQTT Client.
+ *  also MQTT Client.
  *  
- *  Im Beispiel der MQTT- Broker über Domain- Adresse.
+ *  Im Beispiel der MQTT- Broker über Domain- Address.
  */
 
 WiFiClient ethClient;
@@ -39,7 +39,7 @@ void setup() {
 void loop() {
   //MQTT Hintergrund
   MQTT.loop();
-  //Arduino Programm  
+  //Arduino Program  
   if (takt<millis()) {
     Serial.print ("Maxwert: ");
     Serial.print(maxcount);
