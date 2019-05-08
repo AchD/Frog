@@ -4,7 +4,7 @@
 /* Programmbeispiel
  *  
  *  Arduino mit Ethernetshield (z.B. W5100)
- *  als MQTT Client.
+ *  also MQTT Client.
  *  
  *  Im Beispiel der MQTT- Broker mit lokaler IP-Adresse.
  */
@@ -34,7 +34,7 @@ void setup() {
 void loop() {
   //MQTT Hintergrund
   MQTT.loop();
-  //Arduino Programm  
+  //Arduino Program  
   if (takt<millis()) {
     Serial.print ("Maxwert: ");
     Serial.print(maxcount);

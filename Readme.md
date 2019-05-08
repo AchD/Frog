@@ -22,10 +22,10 @@ Calling the constructor "Frog" transfers the connection parameters. These parame
 - Broker = IP- address (IPAddress) or URL (const char) of the MQTT Broker.
 - Port = Port of the MQTT- Broker, normally 1883.
 - clientID = Unique name of the MQTT- client (const char).
-- user = *optional - Username (const char) for authentification at Broker.
-- passwort = *optional - Password (const char) for authentification.
+- user = *optional - Username (const char) for authentication at Broker.
+- passwort = *optional - Password (const char) for authentication.
 
-If Broker don't needs an authentification, you can omit user and password.  
+If Broker don't needs an authentication, you can omit user and password.  
 ## Setup variables connection: ##
 
 Frog can use both *boolean* and *float* variables. These variables are declared and used in the Arduino as usual. A variable can either be sent by the client to the broker (Publish) or received by the broker (Subscribe).
